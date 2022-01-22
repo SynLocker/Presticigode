@@ -59,15 +59,15 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    std::unique_ptr<juce::Slider> juce__slider;
-    std::unique_ptr<juce::Slider> juce__slider2;
-    std::unique_ptr<juce::Slider> juce__slider3;
-    std::unique_ptr<juce::Label> juce__label;
-    std::unique_ptr<juce::Label> juce__label2;
-    std::unique_ptr<juce::Label> juce__label3;
-    std::unique_ptr<PanDelayGraph> juce__component;
-    std::unique_ptr<juce::Label> juce__label4;
-    std::unique_ptr<juce::Label> juce__label5;
+    std::unique_ptr<juce::Slider> FeedbackSlider;
+    std::unique_ptr<juce::Slider> MixSlider;
+    std::unique_ptr<juce::Slider> ToneSlider;
+    std::unique_ptr<juce::Label> FeedbackLabel;
+    std::unique_ptr<juce::Label> MixLabel;
+    std::unique_ptr<juce::Label> ToneLabel;
+    std::unique_ptr<PanDelayGraph> PanDelayComponent;
+    std::unique_ptr<juce::Label> EchoPanLabel;
+    std::unique_ptr<juce::Label> DelayLabel;
 
 
     //==============================================================================
