@@ -23,6 +23,11 @@
 #include <JuceHeader.h>
 #include "PanDelayGraph.h"
 #include "PluginProcessor.h"
+
+typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
+typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
+
+using namespace juce;
 //[/Headers]
 
 
@@ -40,7 +45,7 @@ class PluginEditorGUI  : public juce::AudioProcessorEditor,
 {
 public:
     //==============================================================================
-    PluginEditorGUI (XDelayAudioProcessor& p);
+    PluginEditorGUI (XDelayAudioProcessor& p, AudioProcessorValueTreeState& ppvts);
     ~PluginEditorGUI() override;
 
     //==============================================================================
@@ -56,6 +61,11 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     XDelayAudioProcessor& audioProcessor;
+    AudioProcessorValueTreeState& vts;
+
+    std::unique_ptr<SliderAttachment> feedbackAttachment;
+    std::unique_ptr<SliderAttachment> mixAttachment;
+    std::unique_ptr<SliderAttachment> toneAttachment;
     //[/UserVariables]
 
     //==============================================================================

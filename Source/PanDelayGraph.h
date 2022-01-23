@@ -25,7 +25,7 @@ public:
     ~PanDelayGraph() {};
 
     void paint(juce::Graphics& g) override
-    {
+    {        
         g.fillAll(Colours::black);
 
         //disegno i contorni
@@ -59,7 +59,7 @@ public:
         else if (x > WIDTH)
             cursor_x = WIDTH;
 
-        if (y >= 0 && y <= HEIGHT)
+        if (y >= 0 && y <= HEIGHT) 
             cursor_y = y;
         else if (y < 0)
             cursor_y = 0;

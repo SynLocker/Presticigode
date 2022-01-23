@@ -10,18 +10,20 @@
 #include "PluginEditorGUI.h"
 
 //==============================================================================
-XDelayAudioProcessor::XDelayAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
-                     #if ! JucePlugin_IsMidiEffect
-                      #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
-                      #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
-                     #endif
-                       )
-#endif
+XDelayAudioProcessor::XDelayAudioProcessor() : 
+    ppvts(*this, nullptr, Identifier("XDelayParams"), {
+            std::make_unique<AudioParameterFloat>(NAME_PAN, "Pan", -1.0f, 1.0f, DEFAULT_PAN),
+            std::make_unique<AudioParameterFloat>(NAME_DELAY, "Delay", 0.0f, MAX_DELAY_TIME, DEFAULT_DELAY),
+            std::make_unique<AudioParameterFloat>(NAME_FEEDBACK, "Feedback", 0.0f, 1.0f, DEFAULT_FEEDBACK),
+            std::make_unique<AudioParameterFloat>(NAME_TONE, "Tone", -1.0f, 1.0f, DEFAULT_TONE),
+            std::make_unique<AudioParameterFloat>(NAME_MIX, "Mix", 0.0f, 1.0f, DEFAULT_MIX),
+            std::make_unique<AudioParameterBool>(NAME_BYPASS, "Mute", DEFAULT_BYPASS)
+    })
+
 {
+    /*parameters.addParameterListener(NAME_GAIN, &panner);
+    parameters.addParameterListener(NAME_PAN, &panner);
+    parameters.addParameterListener(NAME_MUTE, &panner);*/
 }
 
 XDelayAudioProcessor::~XDelayAudioProcessor()
@@ -166,7 +168,7 @@ bool XDelayAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* XDelayAudioProcessor::createEditor()
 {
-    return new PluginEditorGUI(*this);
+    return new PluginEditorGUI(*this, ppvts);
 }
 
 //==============================================================================

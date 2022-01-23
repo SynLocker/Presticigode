@@ -19,8 +19,9 @@
 
 //[Headers] You can add your own extra header files here...
 #include "PluginProcessor.h"
-#include <JuceHeader.h>
 #include "PanDelayGraph.h"
+
+using namespace juce;
 //[/Headers]
 
 #include "PluginEditorGUI.h"
@@ -30,8 +31,8 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-PluginEditorGUI::PluginEditorGUI (XDelayAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+PluginEditorGUI::PluginEditorGUI (XDelayAudioProcessor& p, AudioProcessorValueTreeState& ppvts)
+    : AudioProcessorEditor (&p), audioProcessor (p), vts(ppvts)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -130,12 +131,16 @@ PluginEditorGUI::PluginEditorGUI (XDelayAudioProcessor& p)
 
 
     //[UserPreSize]
+    feedbackAttachment.reset(new SliderAttachment(vts, NAME_FEEDBACK, *FeedbackSlider));
+    mixAttachment.reset(new SliderAttachment(vts, NAME_MIX, *MixSlider));
+    toneAttachment.reset(new SliderAttachment(vts, NAME_TONE, *ToneSlider));
     //[/UserPreSize]
 
     setSize (600, 400);
 
 
     //[Constructor] You can add your own custom stuff here..
+
     //[/Constructor]
 }
 
@@ -221,8 +226,8 @@ void PluginEditorGUI::sliderValueChanged (juce::Slider* sliderThatWasMoved)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="PluginEditorGUI" componentName=""
-                 parentClasses="public juce::AudioProcessorEditor" constructorParams="XDelayAudioProcessor&amp; p"
-                 variableInitialisers="AudioProcessorEditor (&amp;p), audioProcessor (p)"
+                 parentClasses="public juce::AudioProcessorEditor" constructorParams="XDelayAudioProcessor&amp; p, AudioProcessorValueTreeState&amp; ppvts"
+                 variableInitialisers="AudioProcessorEditor (&amp;p), audioProcessor (p), vts(ppvts)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44"/>
