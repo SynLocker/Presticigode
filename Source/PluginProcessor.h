@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "Parameters.h"
 #include "SmartPan.h"
+#include "Delay.h"
 
 
 using namespace juce;
@@ -63,6 +64,7 @@ public:
 
 private:
     SmartPan panner;
+    AnalogDelayLine delay;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (XDelayAudioProcessor)
 };
