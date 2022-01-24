@@ -75,8 +75,9 @@ public:
         else if (y > WIDTH)
             cursor_y = WIDTH;
         
-        PanSlider->setValue(1.0f);
-        DelaySlider->setValue(1.0f);
+        // normalizzo valori dal canvas
+        PanSlider->setValue((2.0f/272.0f)*((float)x)-1);
+        DelaySlider->setValue( (5.0f/272.0f)*((float)(272-y)) );
 
         repaint();
     }

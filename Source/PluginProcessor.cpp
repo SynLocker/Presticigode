@@ -10,21 +10,17 @@
 #include "PluginEditorGUI.h"
 
 //==============================================================================
-XDelayAudioProcessor::XDelayAudioProcessor() : 
+XDelayAudioProcessor::XDelayAudioProcessor() :
     ppvts(*this, nullptr, Identifier("XDelayParams"), {
             std::make_unique<AudioParameterFloat>(NAME_PAN, "Pan", -1.0f, 1.0f, DEFAULT_PAN),
             std::make_unique<AudioParameterFloat>(NAME_DELAY, "Delay", 0.0f, MAX_DELAY_TIME, DEFAULT_DELAY),
             std::make_unique<AudioParameterFloat>(NAME_FEEDBACK, "Feedback", 0.0f, 1.0f, DEFAULT_FEEDBACK),
             std::make_unique<AudioParameterFloat>(NAME_TONE, "Tone", -1.0f, 1.0f, DEFAULT_TONE),
             std::make_unique<AudioParameterFloat>(NAME_MIX, "Mix", 0.0f, 1.0f, DEFAULT_MIX),
-            std::make_unique<AudioParameterBool>(NAME_BYPASS, "Mute", DEFAULT_BYPASS)
+            std::make_unique<AudioParameterBool>(NAME_BYPASS, "Bypass", DEFAULT_BYPASS)
     })
-
 {
-    /*parameters.addParameterListener(NAME_GAIN, &panner);
-    parameters.addParameterListener(NAME_PAN, &panner);
-    parameters.addParameterListener(NAME_MUTE, &panner);*/
-    ppvts.addParameterListener(NAME_PAN, this);
+    ppvts.addParameterListener(NAME_PAN, &panner);
     ppvts.addParameterListener(NAME_FEEDBACK, this);
     ppvts.addParameterListener(NAME_DELAY, this);
     ppvts.addParameterListener(NAME_TONE, this);
@@ -102,6 +98,7 @@ void XDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    panner.prepareToPlay(sampleRate);
 }
 
 void XDelayAudioProcessor::releaseResources()
@@ -162,18 +159,21 @@ void XDelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
     // the samples and the outer loop is handling the channels.
     // Alternatively, you can process the samples with the channels
     // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    /*for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
 
         // ..do something to the data...
     }
+    */
+    panner.processBlock(buffer, getTotalNumInputChannels(), getTotalNumOutputChannels());
+
 }
 
 //==============================================================================
 bool XDelayAudioProcessor::hasEditor() const
 {
-    return true; // (change this to false if you choose to not supply an editor)
+    return false; // (change this to false if you choose to not supply an editor)
 }
 
 juce::AudioProcessorEditor* XDelayAudioProcessor::createEditor()
