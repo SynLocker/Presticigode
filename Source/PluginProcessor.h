@@ -65,6 +65,7 @@ public:
 private:
     SmartPan panner;
     AnalogDelayLine delay;
+    dsp::StateVariableTPTFilter<float> lowPassFilter;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (XDelayAudioProcessor)
 };

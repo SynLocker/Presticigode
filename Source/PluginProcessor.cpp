@@ -21,7 +21,7 @@ XDelayAudioProcessor::XDelayAudioProcessor() :
     })
 {
     ppvts.addParameterListener(NAME_PAN, &panner);
-    ppvts.addParameterListener(NAME_FEEDBACK, this);
+    ppvts.addParameterListener(NAME_FEEDBACK, &delay);
     ppvts.addParameterListener(NAME_DELAY, &delay);
     ppvts.addParameterListener(NAME_TONE, this);
     ppvts.addParameterListener(NAME_MIX, this);

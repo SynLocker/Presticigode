@@ -120,5 +120,5 @@ private:
     std::unique_ptr<juce::Slider> DelaySlider;
 
     int cursor_x = WIDTH / 2;
-    int cursor_y = HEIGHT / 2;
+    int cursor_y = HEIGHT;
 };
