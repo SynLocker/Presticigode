@@ -97,7 +97,7 @@ PluginEditorGUI::PluginEditorGUI (XDelayAudioProcessor& p, AudioProcessorValueTr
 
     ToneLabel->setBounds (72, 256, 56, 24);
 
-    PanDelayComponent.reset (new PanDelayGraph());
+    PanDelayComponent.reset (new PanDelayGraph (p));
     addAndMakeVisible (PanDelayComponent.get());
     PanDelayComponent->setName ("PanDelayComponent");
 
@@ -263,7 +263,7 @@ BEGIN_JUCER_METADATA
          kerning="0.0" bold="0" italic="0" justification="33"/>
   <GENERICCOMPONENT name="PanDelayComponent" id="1e00799b4f26f6a5" memberName="PanDelayComponent"
                     virtualName="" explicitFocusOrder="0" pos="264 64 272 272" class="PanDelayGraph"
-                    params=""/>
+                    params="p"/>
   <LABEL name="EchoPanLabel" id="76eabbd45fa5d54c" memberName="EchoPanLabel"
          virtualName="" explicitFocusOrder="0" pos="368 40 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Echo Pan" editableSingleClick="0" editableDoubleClick="0"

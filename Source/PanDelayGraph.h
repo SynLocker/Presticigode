@@ -17,11 +17,22 @@
 #define CIRCLE_RADIUS 10
 
 using namespace juce;
+typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
+typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 
-class PanDelayGraph : public juce::Component
+class PanDelayGraph : public juce::Component, public juce::Slider::Listener
 {
 public:
-    PanDelayGraph() {};
+    PanDelayGraph(XDelayAudioProcessor& p) : audioProcessor(p)
+    {
+        PanSlider.reset(new juce::Slider("PanSlider"));
+        PanSlider->addListener(this);
+        DelaySlider.reset(new juce::Slider("DelaySlider"));
+        DelaySlider->addListener(this);
+
+        panAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_PAN, *PanSlider));
+        delayAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_DELAY, *DelaySlider));
+    };
     ~PanDelayGraph() {};
 
     void paint(juce::Graphics& g) override
@@ -68,7 +79,23 @@ public:
         
         repaint();
     }
+
+    void PanDelayGraph::sliderValueChanged(juce::Slider* sliderThatWasMoved) override
+    {
+    }
+
+
 private:
+    //AudioProcessorValueTreeState& vts;
+    XDelayAudioProcessor& audioProcessor;
+
+    std::unique_ptr<SliderAttachment> panAttachment;
+    std::unique_ptr<SliderAttachment> delayAttachment;
+
+    //slider nascosti
+    std::unique_ptr<juce::Slider> PanSlider;
+    std::unique_ptr<juce::Slider> DelaySlider;
+
     int cursor_x = WIDTH / 2;
     int cursor_y = HEIGHT / 2;
 };

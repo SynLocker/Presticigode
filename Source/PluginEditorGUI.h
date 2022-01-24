@@ -66,6 +66,7 @@ private:
     std::unique_ptr<SliderAttachment> feedbackAttachment;
     std::unique_ptr<SliderAttachment> mixAttachment;
     std::unique_ptr<SliderAttachment> toneAttachment;
+
     //[/UserVariables]
 
     //==============================================================================
