@@ -75,8 +75,8 @@ public:
         else if (y > WIDTH)
             cursor_y = WIDTH;
         
-        PanSlider->setValue(cursor_x);
-        DelaySlider->setValue(cursor_y);
+        PanSlider->setValue(1.0f);
+        DelaySlider->setValue(1.0f);
 
         repaint();
     }

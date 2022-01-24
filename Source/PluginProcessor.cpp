@@ -24,6 +24,11 @@ XDelayAudioProcessor::XDelayAudioProcessor() :
     /*parameters.addParameterListener(NAME_GAIN, &panner);
     parameters.addParameterListener(NAME_PAN, &panner);
     parameters.addParameterListener(NAME_MUTE, &panner);*/
+    ppvts.addParameterListener(NAME_PAN, this);
+    ppvts.addParameterListener(NAME_FEEDBACK, this);
+    ppvts.addParameterListener(NAME_DELAY, this);
+    ppvts.addParameterListener(NAME_TONE, this);
+    ppvts.addParameterListener(NAME_MIX, this);
 }
 
 XDelayAudioProcessor::~XDelayAudioProcessor()
@@ -103,6 +108,11 @@ void XDelayAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+}
+
+void XDelayAudioProcessor::parameterChanged(const String& paramID, float newValue)
+{
+    DBG(paramID + " :" + std::to_string(newValue));
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations

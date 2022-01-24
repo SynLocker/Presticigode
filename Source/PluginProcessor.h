@@ -31,7 +31,7 @@ using namespace juce;
 //==============================================================================
 /**
 */
-class XDelayAudioProcessor  : public juce::AudioProcessor
+class XDelayAudioProcessor  : public juce::AudioProcessor,  public AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
@@ -70,6 +70,8 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+
+    void parameterChanged(const String& paramID, float newValue) override;
 
     AudioProcessorValueTreeState ppvts;
 
