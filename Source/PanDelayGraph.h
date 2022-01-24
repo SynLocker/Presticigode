@@ -32,6 +32,10 @@ public:
 
         panAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_PAN, *PanSlider));
         delayAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_DELAY, *DelaySlider));
+
+        DBG(std::to_string(PanSlider->getValue()));
+        DBG(std::to_string(DelaySlider->getValue()));
+
     };
     ~PanDelayGraph() 
     {
@@ -54,7 +58,18 @@ public:
 
         //disegno la croce
         g.drawLine(WIDTH / 2, 0, WIDTH / 2, HEIGHT, LINE_THICKNESS);
-        g.drawLine(0, HEIGHT / 2, WIDTH, HEIGHT / 2, LINE_THICKNESS);
+        
+        g.drawLine(WIDTH / 2, HEIGHT, WIDTH * 0.25, 0, LINE_THICKNESS);
+        g.drawLine(WIDTH / 2, HEIGHT, WIDTH * 0.75, 0, LINE_THICKNESS);
+
+        g.drawLine(WIDTH / 2, HEIGHT, 0, 0, LINE_THICKNESS);
+        g.drawLine(WIDTH / 2, HEIGHT, WIDTH, 0, LINE_THICKNESS);
+
+        g.drawLine(WIDTH / 2, HEIGHT, WIDTH / 0.25, 0, LINE_THICKNESS);
+        g.drawLine(WIDTH / 2, HEIGHT, WIDTH / 0.75, 0, LINE_THICKNESS);
+
+        g.drawLine(WIDTH / 2, HEIGHT, WIDTH - (WIDTH / 0.25), 0, LINE_THICKNESS);
+        g.drawLine(WIDTH / 2, HEIGHT, WIDTH - (WIDTH / 0.75), 0, LINE_THICKNESS);
 
         //disegno il cursore
         g.setColour(Colours::yellow);
