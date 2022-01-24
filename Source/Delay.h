@@ -12,9 +12,6 @@
 #include <JuceHeader.h>
 #include "Parameters.h"
 
-#define NAME_FB				"fb"
-#define DEFAULT_FB			0.0f
-
 #define FB_SMOOTHING_TIME   0.01f
 #define TIME_SMOOTHING_TIME 0.4f
 
@@ -109,13 +106,13 @@ protected:
 	{
 		if (paramID == NAME_DELAY)
 			delayTime = newValue;
-		if (paramID == NAME_FB)
+		if (paramID == NAME_FEEDBACK)
 			feedback = newValue;
 	}
 
 	int writePosition = 0;
 	float delayTime = DEFAULT_DELAY;
-	float feedback = DEFAULT_FB;
+	float feedback = DEFAULT_FEEDBACK;
 	double sr = 44100.0;
 
 	AudioBuffer<float> delayBuffer;
@@ -127,7 +124,7 @@ public:
 	AnalogDelayLine()
 	{
 		smoothedTime.setCurrentAndTargetValue(DEFAULT_DELAY);
-		smoothedFeedback.setCurrentAndTargetValue(DEFAULT_FB);
+		smoothedFeedback.setCurrentAndTargetValue(DEFAULT_FEEDBACK);
 	}
 
 	~AnalogDelayLine() {};
@@ -235,7 +232,7 @@ private:
 	{
 		if (paramID == NAME_DELAY)
 			smoothedTime.setTargetValue(newValue);
-		if (paramID == NAME_FB)
+		if (paramID == NAME_FEEDBACK)
 			smoothedFeedback.setTargetValue(newValue);
 	}
 

@@ -25,4 +25,4 @@
 #define DEFAULT_MIX  0.5f
 #define DEFAULT_BYPASS false
 
-#define MAX_DELAY_TIME   5.0f
+#define MAX_DELAY_TIME   1.0f

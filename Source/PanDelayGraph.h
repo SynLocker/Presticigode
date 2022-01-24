@@ -98,7 +98,7 @@ public:
         
         // normalizzo valori dal canvas
         PanSlider->setValue((2.0f/272.0f)*((float)x)-1);
-        DelaySlider->setValue( (5.0f/272.0f)*((float)(272-y)) );
+        DelaySlider->setValue( (MAX_DELAY_TIME/272.0f)*((float)(272-y)) );
 
         repaint();
     }
