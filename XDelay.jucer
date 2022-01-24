@@ -2,10 +2,12 @@
 
 <JUCERPROJECT id="UB2zmi" name="XDelay" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              pluginChannelConfigs="{1,1},{2,2}">
+              pluginChannelConfigs="{2,2},{1,2}" pluginVST3Category="Delay"
+              pluginManufacturer="LIM" pluginManufacturerCode="LIM!">
   <MAINGROUP id="xG68FO" name="XDelay">
     <GROUP id="{DE73AA0B-D667-7037-785C-8FF1752482BC}" name="Source">
       <GROUP id="{21E46BA7-A030-4E56-061E-1A5B9F101AB6}" name="DSP">
+        <FILE id="wWw77J" name="Delay.h" compile="0" resource="0" file="Source/Delay.h"/>
         <FILE id="ghhFQk" name="SmartPan.h" compile="0" resource="0" file="Source/SmartPan.h"/>
       </GROUP>
       <GROUP id="{E36638D5-7487-228E-402C-F912D867D3AF}" name="GUI">

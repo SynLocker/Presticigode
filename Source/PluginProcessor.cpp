@@ -22,7 +22,7 @@ XDelayAudioProcessor::XDelayAudioProcessor() :
 {
     ppvts.addParameterListener(NAME_PAN, &panner);
     ppvts.addParameterListener(NAME_FEEDBACK, this);
-    ppvts.addParameterListener(NAME_DELAY, this);
+    ppvts.addParameterListener(NAME_DELAY, &delay);
     ppvts.addParameterListener(NAME_TONE, this);
     ppvts.addParameterListener(NAME_MIX, this);
 }
@@ -98,13 +98,16 @@ void XDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    delay.prepareToPlay(samplesPerBlock, sampleRate);
     panner.prepareToPlay(sampleRate);
+
 }
 
 void XDelayAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+    delay.releaseResources();
 }
 
 void XDelayAudioProcessor::parameterChanged(const String& paramID, float newValue)
@@ -166,6 +169,7 @@ void XDelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
         // ..do something to the data...
     }
     */
+    delay.processBlock(buffer);
     panner.processBlock(buffer, getTotalNumInputChannels(), getTotalNumOutputChannels());
 
 }
