@@ -147,6 +147,9 @@ PluginEditorGUI::PluginEditorGUI (XDelayAudioProcessor& p, AudioProcessorValueTr
 PluginEditorGUI::~PluginEditorGUI()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+    feedbackAttachment = nullptr;
+    mixAttachment = nullptr;
+    toneAttachment = nullptr;
     //[/Destructor_pre]
 
     FeedbackSlider = nullptr;
@@ -161,6 +164,7 @@ PluginEditorGUI::~PluginEditorGUI()
 
 
     //[Destructor]. You can add your own custom destruction code here..
+
     //[/Destructor]
 }
 

@@ -173,7 +173,7 @@ void XDelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
 //==============================================================================
 bool XDelayAudioProcessor::hasEditor() const
 {
-    return false; // (change this to false if you choose to not supply an editor)
+    return true; // (change this to false if you choose to not supply an editor)
 }
 
 juce::AudioProcessorEditor* XDelayAudioProcessor::createEditor()

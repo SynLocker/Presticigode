@@ -33,7 +33,13 @@ public:
         panAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_PAN, *PanSlider));
         delayAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_DELAY, *DelaySlider));
     };
-    ~PanDelayGraph() {};
+    ~PanDelayGraph() 
+    {
+        panAttachment = nullptr;
+        delayAttachment = nullptr;
+        DelaySlider = nullptr;
+        PanSlider = nullptr;
+    };
 
     void paint(juce::Graphics& g) override
     {        
