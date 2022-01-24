@@ -57,8 +57,6 @@ public:
 
     void mouseDrag(const MouseEvent& event) override
     {
-        DBG("Clicked at: " << event.getPosition().toString());
-
         int x = event.getPosition().getX();
         int y = event.getPosition().getY();
 
@@ -77,6 +75,9 @@ public:
         else if (y > WIDTH)
             cursor_y = WIDTH;
         
+        PanSlider->setValue(cursor_x);
+        DelaySlider->setValue(cursor_y);
+
         repaint();
     }
 
