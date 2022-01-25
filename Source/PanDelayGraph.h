@@ -33,8 +33,7 @@ public:
         panAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_PAN, *PanSlider));
         delayAttachment.reset(new SliderAttachment(audioProcessor.ppvts, NAME_DELAY, *DelaySlider));
 
-        DBG(std::to_string(PanSlider->getValue()));
-        DBG(std::to_string(DelaySlider->getValue()));
+        DelaySlider->setValue(DEFAULT_DELAY);
 
     };
     ~PanDelayGraph() 
@@ -78,6 +77,16 @@ public:
 
     void mouseDrag(const MouseEvent& event) override
     {
+        updateValues(event);
+    }
+
+    void mouseDown(const MouseEvent& event) override
+    {
+        updateValues(event);
+    }
+
+    void updateValues(const MouseEvent& event) 
+    {
         int x = event.getPosition().getX();
         int y = event.getPosition().getY();
 
@@ -89,16 +98,16 @@ public:
         else if (x > WIDTH)
             cursor_x = WIDTH;
 
-        if (y >= 0 && y <= HEIGHT) 
+        if (y >= 0 && y <= HEIGHT)
             cursor_y = y;
         else if (y < 0)
             cursor_y = 0;
         else if (y > WIDTH)
             cursor_y = WIDTH;
-        
+
         // normalizzo valori dal canvas
-        PanSlider->setValue((2.0f/272.0f)*((float)x)-1);
-        DelaySlider->setValue( (MAX_DELAY_TIME/272.0f)*((float)(272-y)) );
+        PanSlider->setValue((2.0f / 272.0f) * ((float)x) - 1);
+        DelaySlider->setValue((MAX_DELAY_TIME / 272.0f) * ((float)(272 - y)));
 
         repaint();
     }

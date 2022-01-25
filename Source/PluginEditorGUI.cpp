@@ -39,63 +39,64 @@ PluginEditorGUI::PluginEditorGUI (XDelayAudioProcessor& p, AudioProcessorValueTr
 
     FeedbackSlider.reset (new juce::Slider ("FeedbackSlider"));
     addAndMakeVisible (FeedbackSlider.get());
-    FeedbackSlider->setRange (0, 10, 0);
+    FeedbackSlider->setRange (0, 1, 0);
     FeedbackSlider->setSliderStyle (juce::Slider::RotaryVerticalDrag);
-    FeedbackSlider->setTextBoxStyle (juce::Slider::TextBoxLeft, false, 80, 20);
+    FeedbackSlider->setTextBoxStyle (juce::Slider::NoTextBox, false, 80, 20);
     FeedbackSlider->addListener (this);
 
-    FeedbackSlider->setBounds (32, 56, 150, 64);
+    FeedbackSlider->setBounds (32, 56, 152, 80);
 
     MixSlider.reset (new juce::Slider ("MixSlider"));
     addAndMakeVisible (MixSlider.get());
-    MixSlider->setRange (0, 10, 0);
-    MixSlider->setSliderStyle (juce::Slider::RotaryHorizontalDrag);
-    MixSlider->setTextBoxStyle (juce::Slider::TextBoxLeft, false, 80, 20);
+    MixSlider->setRange (0, 1, 0);
+    MixSlider->setSliderStyle (juce::Slider::RotaryVerticalDrag);
+    MixSlider->setTextBoxStyle (juce::Slider::NoTextBox, false, 80, 20);
     MixSlider->addListener (this);
 
-    MixSlider->setBounds (32, 168, 150, 64);
+    MixSlider->setBounds (32, 168, 152, 80);
 
     ToneSlider.reset (new juce::Slider ("ToneSlider"));
     addAndMakeVisible (ToneSlider.get());
-    ToneSlider->setRange (0, 10, 0);
-    ToneSlider->setSliderStyle (juce::Slider::RotaryHorizontalDrag);
-    ToneSlider->setTextBoxStyle (juce::Slider::TextBoxLeft, false, 80, 20);
+    ToneSlider->setRange (-1, 1, 0);
+    ToneSlider->setSliderStyle (juce::Slider::RotaryVerticalDrag);
+    ToneSlider->setTextBoxStyle (juce::Slider::NoTextBox, false, 80, 20);
     ToneSlider->addListener (this);
+    ToneSlider->setSkewFactor (0.75);
 
-    ToneSlider->setBounds (32, 280, 150, 64);
+    ToneSlider->setBounds (32, 280, 152, 80);
 
     FeedbackLabel.reset (new juce::Label ("FeedbackLabel",
                                           TRANS("Feedback")));
     addAndMakeVisible (FeedbackLabel.get());
     FeedbackLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    FeedbackLabel->setJustificationType (juce::Justification::centredLeft);
+    FeedbackLabel->setJustificationType (juce::Justification::centred);
     FeedbackLabel->setEditable (false, false, false);
     FeedbackLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
     FeedbackLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
 
-    FeedbackLabel->setBounds (64, 32, 72, 24);
+    FeedbackLabel->setBounds (32, 32, 152, 24);
 
     MixLabel.reset (new juce::Label ("MixLabel",
                                      TRANS("Mix(Dry/Wet)")));
     addAndMakeVisible (MixLabel.get());
     MixLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    MixLabel->setJustificationType (juce::Justification::centredLeft);
+    MixLabel->setJustificationType (juce::Justification::centred);
     MixLabel->setEditable (false, false, false);
     MixLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
     MixLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
 
-    MixLabel->setBounds (56, 144, 104, 24);
+    MixLabel->setBounds (32, 144, 152, 24);
 
     ToneLabel.reset (new juce::Label ("ToneLabel",
                                       TRANS("Tone")));
     addAndMakeVisible (ToneLabel.get());
     ToneLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    ToneLabel->setJustificationType (juce::Justification::centredLeft);
+    ToneLabel->setJustificationType (juce::Justification::centred);
     ToneLabel->setEditable (false, false, false);
     ToneLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
     ToneLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
 
-    ToneLabel->setBounds (72, 256, 56, 24);
+    ToneLabel->setBounds (32, 256, 152, 24);
 
     PanDelayComponent.reset (new PanDelayGraph (p));
     addAndMakeVisible (PanDelayComponent.get());
@@ -236,35 +237,35 @@ BEGIN_JUCER_METADATA
                  fixedSize="1" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44"/>
   <SLIDER name="FeedbackSlider" id="f67974cc68240d99" memberName="FeedbackSlider"
-          virtualName="" explicitFocusOrder="0" pos="32 56 150 64" min="0.0"
-          max="10.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="TextBoxLeft"
+          virtualName="" explicitFocusOrder="0" pos="32 56 152 80" min="0.0"
+          max="1.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="MixSlider" id="dd96fd0327d144bd" memberName="MixSlider"
-          virtualName="" explicitFocusOrder="0" pos="32 168 150 64" min="0.0"
-          max="10.0" int="0.0" style="RotaryHorizontalDrag" textBoxPos="TextBoxLeft"
+          virtualName="" explicitFocusOrder="0" pos="32 168 152 80" min="0.0"
+          max="1.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="ToneSlider" id="641a8daa1a6ab101" memberName="ToneSlider"
-          virtualName="" explicitFocusOrder="0" pos="32 280 150 64" min="0.0"
-          max="10.0" int="0.0" style="RotaryHorizontalDrag" textBoxPos="TextBoxLeft"
-          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          virtualName="" explicitFocusOrder="0" pos="32 280 152 80" min="-1.0"
+          max="1.0" int="0.0" style="RotaryVerticalDrag" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="0.75"
           needsCallback="1"/>
   <LABEL name="FeedbackLabel" id="e7db6f463f9625bd" memberName="FeedbackLabel"
-         virtualName="" explicitFocusOrder="0" pos="64 32 72 24" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="32 32 152 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Feedback" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="MixLabel" id="71906239077d1f59" memberName="MixLabel" virtualName=""
-         explicitFocusOrder="0" pos="56 144 104 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="32 144 152 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Mix(Dry/Wet)" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="ToneLabel" id="1d7a6ef62a273b24" memberName="ToneLabel"
-         virtualName="" explicitFocusOrder="0" pos="72 256 56 24" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="32 256 152 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Tone" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <GENERICCOMPONENT name="PanDelayComponent" id="1e00799b4f26f6a5" memberName="PanDelayComponent"
                     virtualName="" explicitFocusOrder="0" pos="264 64 272 272" class="PanDelayGraph"
                     params="p"/>

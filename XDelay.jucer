@@ -8,7 +8,9 @@
     <GROUP id="{DE73AA0B-D667-7037-785C-8FF1752482BC}" name="Source">
       <GROUP id="{21E46BA7-A030-4E56-061E-1A5B9F101AB6}" name="DSP">
         <FILE id="wWw77J" name="Delay.h" compile="0" resource="0" file="Source/Delay.h"/>
+        <FILE id="O6lNYT" name="Mix.h" compile="0" resource="0" file="Source/Mix.h"/>
         <FILE id="ghhFQk" name="SmartPan.h" compile="0" resource="0" file="Source/SmartPan.h"/>
+        <FILE id="DnLzRI" name="StereoFilter.h" compile="0" resource="0" file="Source/StereoFilter.h"/>
       </GROUP>
       <GROUP id="{E36638D5-7487-228E-402C-F912D867D3AF}" name="GUI">
         <FILE id="R29ge1" name="PanDelayGraph.h" compile="0" resource="0" file="Source/PanDelayGraph.h"/>

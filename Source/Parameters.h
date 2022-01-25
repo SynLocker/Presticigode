@@ -21,8 +21,11 @@
 #define DEFAULT_PAN 0.0f
 #define DEFAULT_DELAY  0.0f
 #define DEFAULT_FEEDBACK  0.0f
-#define DEFAULT_TONE  0.5f
+#define DEFAULT_TONE  0.0f
 #define DEFAULT_MIX  0.5f
 #define DEFAULT_BYPASS false
+#define DEFAULT_Q 0.1
+
+#define CROSS_FREQ 1000.0
 
 #define MAX_DELAY_TIME   1.0f
