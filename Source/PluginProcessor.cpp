@@ -11,13 +11,47 @@
 
 //==============================================================================
 XDelayAudioProcessor::XDelayAudioProcessor() :
-    ppvts(*this, nullptr, Identifier("XDelayParams"), {
-            std::make_unique<AudioParameterFloat>(NAME_PAN, "Pan", -1.0f, 1.0f, DEFAULT_PAN),
-            std::make_unique<AudioParameterFloat>(NAME_DELAY, "Delay", 0.0f, MAX_DELAY_TIME, DEFAULT_DELAY),
-            std::make_unique<AudioParameterFloat>(NAME_FEEDBACK, "Feedback", 0.0f, 1.0f, DEFAULT_FEEDBACK),
-            std::make_unique<AudioParameterFloat>(NAME_TONE, "Tone", -1.0f, 1.0f, DEFAULT_TONE),
-            std::make_unique<AudioParameterFloat>(NAME_MIX, "Mix", 0.0f, 1.0f, DEFAULT_MIX),
-            std::make_unique<AudioParameterBool>(NAME_BYPASS, "Bypass", DEFAULT_BYPASS)
+    ppvts(*this, nullptr, juce::Identifier("XDelayParams"), {
+        std::make_unique<juce::AudioParameterFloat>(
+            juce::ParameterID{ NAME_PAN, 1 },      // ID + versione
+            "Pan",
+            juce::NormalisableRange<float>{ -1.0f, 1.0f },
+            DEFAULT_PAN
+        ),
+
+        std::make_unique<juce::AudioParameterFloat>(
+            juce::ParameterID{ NAME_DELAY, 1 },
+            "Delay",
+            juce::NormalisableRange<float>{ 0.0f, MAX_DELAY_TIME },
+            DEFAULT_DELAY
+        ),
+
+        std::make_unique<juce::AudioParameterFloat>(
+            juce::ParameterID{ NAME_FEEDBACK, 1 },
+            "Feedback",
+            juce::NormalisableRange<float>{ 0.0f, 1.0f },
+            DEFAULT_FEEDBACK
+        ),
+
+        std::make_unique<juce::AudioParameterFloat>(
+            juce::ParameterID{ NAME_TONE, 1 },
+            "Tone",
+            juce::NormalisableRange<float>{ -1.0f, 1.0f },
+            DEFAULT_TONE
+        ),
+
+        std::make_unique<juce::AudioParameterFloat>(
+            juce::ParameterID{ NAME_MIX, 1 },
+            "Mix",
+            juce::NormalisableRange<float>{ 0.0f, 1.0f },
+            DEFAULT_MIX
+        ),
+
+        std::make_unique<juce::AudioParameterBool>(
+            juce::ParameterID{ NAME_BYPASS, 1 },
+            "Bypass",
+            DEFAULT_BYPASS
+        )
     })
 {
     ppvts.addParameterListener(NAME_PAN, &panner);

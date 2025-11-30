@@ -112,7 +112,7 @@ public:
         repaint();
     }
 
-    void PanDelayGraph::sliderValueChanged(juce::Slider* sliderThatWasMoved) override
+    void sliderValueChanged(juce::Slider* sliderThatWasMoved) override
     {
     }
 
